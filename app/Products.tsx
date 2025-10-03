@@ -45,6 +45,13 @@ const Products = ({ products, gap }: ProductsProps) => {
     }
   };
 
+  function formatPrice(value: number): string {
+    return new Intl.NumberFormat("ja-JP", {
+      style: "currency",
+      currency: "JPY",
+    }).format(value);
+  }
+
   return (
     <div
       className={` ${gap} grid justify-center hover:scale-105
@@ -68,9 +75,9 @@ const Products = ({ products, gap }: ProductsProps) => {
           <p> {products.name} </p>
           <div className=" flex gap-3">
             <span className=" text-sm text-lightGray line-through ">
-              ${products.oldPrice}
+              {formatPrice(products.oldPrice)}
             </span>
-            <b className=" text-zinc-900 "> ${products.price} </b>
+            <b className=" text-zinc-900 "> {formatPrice(products.price)} </b>
           </div>
         </nav>
 

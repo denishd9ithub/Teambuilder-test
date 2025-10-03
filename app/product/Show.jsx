@@ -32,6 +32,13 @@ const Show = ({ product, products }) => {
     setZoom(false);
   };
 
+  function formatPrice(value) {
+    return new Intl.NumberFormat("ja-JP", {
+      style: "currency",
+      currency: "JPY",
+    }).format(value);
+  }
+
   return (
     <div className=" sm:px-10 py-10">
       <div>
@@ -101,7 +108,9 @@ const Show = ({ product, products }) => {
               <div className=" text-secondary font-medium ">DETAILS:</div>
               <p className="w-2/3 text-lightGray"> {product.details}</p>
 
-              <div className=" my-4 text-2xl font-bold"> ${product.price} </div>
+              <div className=" my-4 text-2xl font-bold">
+                {formatPrice(product.price)}
+              </div>
 
               {/* ==== QUANTITY SHOW  */}
               <div className="flex">
@@ -144,12 +153,14 @@ const Show = ({ product, products }) => {
                 Add to Cart
               </button>
 
-              <div
+              <button
                 className=" text-center hover:scale-105 transition shadow-md cursor-pointer
-                 bg-primary text-xl px-8 py-2  text-highLight ring-1 ring-primary"
+                 bg-primary text-white text-xl px-8 py-2 ring-1 ring-primary w-full sm:w-auto"
+                onClick={() => onAdd(product, qty)}
+                aria-label="Buy Now"
               >
                 Buy Now
-              </div>
+              </button>
             </div>
           </section>
         </div>
