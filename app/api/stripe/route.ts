@@ -31,14 +31,19 @@ export async function POST(req: Request) {
           )
           .replace("-webp", ".webp");
 
+        const usdToJpy = (usd: number) => {
+          const rate =  147.32;
+          return Math.round(usd * rate);
+        };
+
         return {
           price_data: {
-            currency: "myr",
+            currency: "jpy",
             product_data: {
               name: item.name,
               images: [newImage],
             },
-            unit_amount: item.price * 100,
+            unit_amount: usdToJpy(item.price),
           },
           adjustable_quantity: {
             enabled: true,

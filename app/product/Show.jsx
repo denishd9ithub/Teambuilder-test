@@ -39,6 +39,11 @@ const Show = ({ product, products }) => {
     }).format(value);
   }
 
+  const usdToJpy = (usd) => {
+    const rate = 147.32;
+    return Math.round(usd * rate);
+  };
+
   return (
     <div className=" sm:px-10 py-10">
       <div>
@@ -109,7 +114,7 @@ const Show = ({ product, products }) => {
               <p className="w-2/3 text-lightGray"> {product.details}</p>
 
               <div className=" my-4 text-2xl font-bold">
-                {formatPrice(product.price)}
+                {formatPrice(usdToJpy(product.price))}
               </div>
 
               {/* ==== QUANTITY SHOW  */}
